@@ -3,6 +3,12 @@
 @section('content')
     <h1>☁️ Welcome to Cinnamoroll's Library ☁️</h1>
 
+    @if(session('success'))
+        <div style="background: white; border: 2px solid #AEE1F9; color: #5BA6D0; padding: 12px; border-radius: 20px; text-align: center; margin-bottom: 20px; font-weight: bold; box-shadow: 0 4px 6px rgba(0,0,0,0.05);">
+            ✨ {{ session('success') }} ✨
+        </div>
+    @endif
+
     <div style="text-align: center; margin-bottom: 30px;">
         <a href="{{ route('books.create') }}" class="btn btn-primary">+ Add New Book</a>
     </div>

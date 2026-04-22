@@ -19,13 +19,14 @@ class BookController extends Controller
             'author' => 'required|string|max:255',
             'published_date' => 'required|date',
         ]);
+
         Book::create([
             'title' => $request->title,
             'author' => $request->author,
             'published_date' => $request->published_date,
         ]);
 
-        return redirect()->route('books.index');
+        return redirect()->route('books.index')->with('success', 'Book added to the library! ✨');
     }
     public function index()
     {
@@ -44,6 +45,7 @@ class BookController extends Controller
             'author' => 'required|string|max:255',
             'published_date' => 'required|date',
         ]);
+
         $book = Book::findOrFail($id);
         $book->update([
             'title' => $request->title,
@@ -51,14 +53,15 @@ class BookController extends Controller
             'published_date' => $request->published_date,
         ]);
 
-        return redirect()->route('books.index');
+        return redirect()->route('books.index')->with('success', 'Book details updated! ☁️');
     }
     public function destroy($id)
     {
         $book = Book::findOrFail($id);
         $book->delete();
 
-        return redirect()->route('books.index');
+        // Added custom success message
+        return redirect()->route('books.index')->with('success', 'The book has been removed. 🎀');
     }
 
 
